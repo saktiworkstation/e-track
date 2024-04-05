@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Ticket;
 use App\Models\User;
+use App\Models\UserTicket;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         Ticket::factory(10)->create();
+        UserTicket::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
