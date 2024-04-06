@@ -21,6 +21,7 @@ class UserTicketFactory extends Factory
             'ticket_id' => $this->faker->randomElement([1, 10]),
             'status' => $this->faker->randomElement([0, 1]),
             'amount' => $this->faker->numberBetween(1, 10),
+            'total_price' => $this->faker->numberBetween(100, 200),
             'code' => $this->faker->unique()->word,
         ];
     }

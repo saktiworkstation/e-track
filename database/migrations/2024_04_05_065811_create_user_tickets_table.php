@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('ticket_id');
             $table->integer('status');
             $table->integer('amount');
+            $table->integer('total_price');
             $table->string('code')->unique(); // kode untuk mengkonfirmasi bahwa ini digunakan
             $table->timestamps();
         });

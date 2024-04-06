@@ -21,6 +21,7 @@ class TicketFactory extends Factory
             'descriptions' => $this->faker->sentence,
             'stocks' => $this->faker->numberBetween(0, 100),
             'status' => $this->faker->randomElement([0, 1]),
+            'price' => $this->faker->randomElement([5, 100]),
         ];
     }
 }
