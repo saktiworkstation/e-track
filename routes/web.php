@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
+Route::post('/register', [AuthController::class, 'store']);
