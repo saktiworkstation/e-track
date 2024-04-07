@@ -16,7 +16,7 @@
     {{-- My CSS --}}
     <link rel="stylesheet" href="/css/style.css">
 
-    <title>Auth</title>
+    <title>Auth | {{ $title }}</title>
 </head>
 
 <body>

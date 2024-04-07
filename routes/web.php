@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,4 @@ Route::get('/', function () {
     return view('landing-page');
 });
 
-Route::get('/login', function () {
-    return view('auth.login.index');
-});
+Route::get('/login', [AuthController::class, 'login']);
