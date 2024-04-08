@@ -23,3 +23,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/register', [AuthController::class, 'store']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
