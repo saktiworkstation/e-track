@@ -12,10 +12,37 @@
             <li><a href="#" class="nav-link px-2">FAQs</a></li>
             <li><a href="#" class="nav-link px-2">About</a></li>
         </ul>
+        @auth
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Welcome back, {{ auth()->user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-window-reverse"></i>
+                                Dashboard</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="dropdown-item" type="submit">
+                                    <i class="bi bi-box-arrow-in-right"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        @else
+            <div class="col-md-3 text-end">
+                <a type="button" href="/login" class="btn btn-outline-primary me-2">Login</a>
+                <a type="button" href="/register" class="btn btn-primary">Sign-up</a>
+            </div>
+        @endauth
 
-        <div class="col-md-3 text-end">
-            <a type="button" href="/login" class="btn btn-outline-primary me-2">Login</a>
-            <a type="button" href="/register" class="btn btn-primary">Sign-up</a>
-        </div>
+
     </header>
 </div>
