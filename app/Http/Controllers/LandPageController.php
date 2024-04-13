@@ -9,7 +9,7 @@ class LandPageController extends Controller
 {
     public function index(){
         return view('landing-page', [
-            'tickets' => Ticket::orderBy('created_at', 'asc')->get()
+            'tickets' => Ticket::orderBy('created_at', 'asc')->paginate(6)
         ]);
     }
 }

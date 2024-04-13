@@ -18,12 +18,15 @@
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title">${{ $ticket->price }}</h1>
                             <p class="mt-3 mb-4">
-                                {{ $ticket->descriptions }}
+                                {!! $ticket->descriptions !!}
                             </p>
                             <a href="#" class="w-100 btn btn-lg btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $tickets->links() }}
         </div>
 </div>
