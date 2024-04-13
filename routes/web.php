@@ -31,3 +31,4 @@ Route::get('/dashboard', function () {
 
 // user tiket
 Route::get('/dashboard/tickets', [TicketController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/tickets/create', [TicketController::class, 'create'])->middleware('auth')->middleware('admin');

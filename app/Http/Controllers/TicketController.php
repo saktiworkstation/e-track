@@ -15,7 +15,7 @@ class TicketController extends Controller
     }
 
     public function create(){
-        //
+        return view('dashboard.ticket.create');
     }
 
     public function store(){
