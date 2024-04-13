@@ -11,14 +11,16 @@ class TicketController extends Controller
 {
     public function index(){
         return view('dashboard.ticket.index',[
-            'tickets' => UserTicket::where('user_id', auth()->user()->id)->get(),
+            'userTickets' => UserTicket::where('user_id', auth()->user()->id)->latest()->get(),
+            'tickets' => Ticket::latest()->get(),
             'title' => 'My Tickets',
         ]);
     }
 
     public function manage(){
         return view('dashboard.ticket.index',[
-            'tickets' => UserTicket::latest()->get(),
+            'userTickets' => UserTicket::latest()->get(),
+            'tickets' => Ticket::latest()->get(),
             'title' => 'Ticket Management',
         ]);
     }
