@@ -89,9 +89,18 @@
                                         <td>{{ $ticket->status }}</td>
                                         <td>{{ $ticket->price }}</td>
                                         <td>
-                                            <a href="/dashboard/tickets/{{ $ticket->slug }}" class="badge bg-info">
-                                                <span data-feather="check-circle"></span>
+                                            <a href="/dashboard/tickets/{{ $ticket->slug }}/edit" class="badge bg-warning">
+                                                <span data-feather="edit"></span>
                                             </a>
+                                            <form action="/dashboard/tickets/{{ $ticket->slug }}" method="post"
+                                                class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="badge bg-danger border-0"
+                                                    onclick="return confirm('Are you sure?')">
+                                                    <span data-feather="x-circle"></span>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
