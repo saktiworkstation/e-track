@@ -12,8 +12,17 @@
         </div>
     @endif
 
-    <div class="table-responsive col-lg-8">
-        <a href="/dashboard/tickets/create" class="btn btn-primary mb-3">Create new Ticket</a>
+    <div class="table-responsive col-lg-5">
+        @if (Request::is('dashboard/tickets/manage'))
+            <div class="col-sm-8 mb-3 mb-sm-4">
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1 mx-1">Create new Ticket</a>
+                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1 mx-1">Manage Ticket</a>
+                    </div>
+                </div>
+            </div>
+        @endif
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -23,7 +32,9 @@
                     <th scope="col">Status</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Total Price</th>
-                    <th scope="col">Action</th>
+                    @if (Request::is('dashboard/tickets/manage'))
+                        <th scope="col">Action</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -35,20 +46,15 @@
                         <td>{{ $ticket->status }}</td>
                         <td>{{ $ticket->amount }}</td>
                         <td>{{ $ticket->total_price }}</td>
-                        <td><a href="/dashboard/tickets/{{ $ticket->slug }}" class="badge bg-info">
-                                <span data-feather="eye"></span>
-                            </a>
-                            <a href="/dashboard/tickets/{{ $ticket->slug }}/edit" class="badge bg-warning">
-                                <span data-feather="edit"></span>
-                            </a>
-                            <form action="/dashboard/tickets/{{ $ticket->slug }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">
-                                    <span data-feather="x-circle"></span>
-                                </button>
-                            </form>
-                        </td>
+                        @if (Request::is('dashboard/tickets/manage'))
+                            <td>
+                                @if ($ticket->status == 0 && Request::is('dashboard/tickets/manage'))
+                                    <a href="/dashboard/tickets/{{ $ticket->slug }}" class="badge bg-info">
+                                        <span data-feather="check-circle"></span>
+                                    </a>
+                                @endif
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

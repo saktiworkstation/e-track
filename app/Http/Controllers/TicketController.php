@@ -19,7 +19,7 @@ class TicketController extends Controller
     public function manage(){
         return view('dashboard.ticket.index',[
             'tickets' => UserTicket::latest()->get(),
-            'title' => 'Usert Tiket Management',
+            'title' => 'Ticket Management',
         ]);
     }
 
