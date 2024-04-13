@@ -15,6 +15,12 @@ class TicketController extends Controller
         ]);
     }
 
+    public function manage(){
+        return view('dashboard.ticket.index',[
+            'tickets' => UserTicket::latest()->get()
+        ]);
+    }
+
     public function create(){
         return view('dashboard.ticket.create');
     }
