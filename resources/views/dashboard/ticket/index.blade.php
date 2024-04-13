@@ -30,8 +30,8 @@
                 @foreach ($tickets as $ticket)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $ticket->user_id }}</td>
-                        <td>{{ $ticket->ticket_id }}</td>
+                        <td>{{ $ticket->users->username }}</td>
+                        <td>{{ $ticket->tickets->name }}</td>
                         <td>{{ $ticket->status }}</td>
                         <td>{{ $ticket->amount }}</td>
                         <td>{{ $ticket->total_price }}</td>
