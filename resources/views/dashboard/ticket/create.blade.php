@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/tickets" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -19,10 +19,10 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="stock" class="form-label">Stock</label>
-                <input type="text" class="form-control @error('stock') is-invalid @enderror" id="stock"
-                    name="stock" required value="{{ old('stock') }}">
-                @error('stock')
+                <label for="stocks" class="form-label">Stocks</label>
+                <input type="text" class="form-control @error('stocks') is-invalid @enderror" id="stocks"
+                    name="stocks" required value="{{ old('stock') }}">
+                @error('stocks')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -56,7 +56,7 @@
                 <input id="descriptions" type="hidden" name="descriptions" value="{{ old('descriptions') }}">
                 <trix-editor input="descriptions"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-primary">Create Tickets</button>
         </form>
     </div>
 
