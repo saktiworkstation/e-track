@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\UserTicket;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TicketController extends Controller
 {
@@ -68,5 +69,17 @@ class TicketController extends Controller
         Ticket::where('id', $ticket->id)->update($validatedData);
 
         return redirect('/dashboard/tickets/manage')->with('success', 'Ticket has been updated!');
+    }
+
+    public function destroy($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+
+        if ($ticket->image) {
+            Storage::delete($ticket->image);
+        }
+
+        Ticket::destroy($ticket->id);
+        return redirect('/dashboard/tickets')->with('success', 'Ticket has been deleted!');
     }
 }
