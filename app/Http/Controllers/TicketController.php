@@ -31,7 +31,7 @@ class TicketController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:tickets',
             'stocks' => 'required|numeric',
             'status' => 'required|numeric',
             'price' => 'required|numeric',
@@ -40,11 +40,33 @@ class TicketController extends Controller
 
         Ticket::create($validatedData);
 
-        return redirect('/dashboard/tickets')->with('success', 'New ticket has been added!');
+        return redirect('/dashboard/tickets/manage')->with('success', 'New ticket has been added!');
     }
 
     public function edit($id){
+        return view('dashboard.ticket.edit', [
+            'ticket' => Ticket::findOrFail($id)
+        ]);
+    }
+
+    public function update(Request $request, $id){
         $ticket = Ticket::findOrFail($id);
-        return view('dashboard.ticket.edit', ['ticket' => $ticket]);
+
+        $rules = [
+            'stocks' => 'required|numeric',
+            'status' => 'required|numeric',
+            'price' => 'required|numeric',
+            'descriptions' => 'required'
+        ];
+
+        if ($request->name != $ticket->name) {
+            $rules['name'] = 'required|max:255|unique:tickets';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Ticket::where('id', $ticket->id)->update($validatedData);
+
+        return redirect('/dashboard/tickets/manage')->with('success', 'Ticket has been updated!');
     }
 }
