@@ -89,10 +89,10 @@
                                         <td>{{ $ticket->status }}</td>
                                         <td>{{ $ticket->price }}</td>
                                         <td>
-                                            <a href="/dashboard/tickets/{{ $ticket->slug }}/edit" class="badge bg-warning">
+                                            <a href="/dashboard/tickets/{{ $ticket->id }}/edit" class="badge bg-warning">
                                                 <span data-feather="edit"></span>
                                             </a>
-                                            <form action="/dashboard/tickets/{{ $ticket->slug }}" method="post"
+                                            <form action="/dashboard/tickets/{{ $ticket->id }}" method="post"
                                                 class="d-inline">
                                                 @method('delete')
                                                 @csrf

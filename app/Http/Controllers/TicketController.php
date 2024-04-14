@@ -43,7 +43,8 @@ class TicketController extends Controller
         return redirect('/dashboard/tickets')->with('success', 'New ticket has been added!');
     }
 
-    public function edit(){
-        return view('dashboard.ticket.edit');
+    public function edit($id){
+        $ticket = Ticket::findOrFail($id);
+        return view('dashboard.ticket.edit', ['ticket' => $ticket]);
     }
 }

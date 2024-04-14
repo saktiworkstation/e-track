@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/tickets/{{ $ticket->slug }}" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/tickets/{{ $ticket->id }}" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -56,7 +56,7 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
                 <input id="descriptions" type="hidden" name="descriptions"
-                    value="{{ old('descriptions', $tickets->descriptions) }}">
+                    value="{{ old('descriptions', $ticket->descriptions) }}">
                 <trix-editor input="descriptions"></trix-editor>
             </div>
             <button type="submit" class="btn btn-primary">update Post</button>

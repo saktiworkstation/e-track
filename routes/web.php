@@ -34,4 +34,4 @@ Route::get('/dashboard/tickets', [TicketController::class, 'index'])->middleware
 Route::get('/dashboard/tickets/create', [TicketController::class, 'create'])->middleware('auth')->middleware('admin');
 Route::post('/dashboard/tickets', [TicketController::class, 'store'])->middleware('auth')->middleware('admin');
 Route::get('/dashboard/tickets/manage', [TicketController::class, 'manage'])->middleware('auth')->middleware('admin');
-Route::get('/dashboard/tickets/edit', [TicketController::class, 'edit'])->middleware('auth')->middleware('admin');
+Route::get('/dashboard/tickets/{id}/edit', [TicketController::class, 'edit'])->middleware('auth')->middleware('admin');
