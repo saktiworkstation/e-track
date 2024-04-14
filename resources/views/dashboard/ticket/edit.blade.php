@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/tickets/{{ $ticket->id }}" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/tickets/{{ $ticket->id }}/edit" class="mb-5" enctype="multipart/form-data">
             @method('put')
             @csrf
             <div class="mb-3">
@@ -59,42 +59,7 @@
                     value="{{ old('descriptions', $ticket->descriptions) }}">
                 <trix-editor input="descriptions"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">update Post</button>
+            <button type="submit" class="btn btn-primary">update Ticket</button>
         </form>
     </div>
-
-    <script>
-        // start slugable
-        const title = document.querySelector('#title');
-        const slug = document.querySelector('#slug');
-
-        title.addEventListener('change', function() {
-            fetch('/dashboard/posts/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-        // end slugable
-
-        // start trix
-        document.addEventListener('trix-file-accept', function(e) {
-            e.preventDefault();
-        })
-        // end trix
-
-        // Start img preview
-        function previewImage() {
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview');
-
-            imgPreview.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-        // End img preview
-    </script>
 @endsection
