@@ -80,6 +80,6 @@ class TicketController extends Controller
         }
 
         Ticket::destroy($ticket->id);
-        return redirect('/dashboard/tickets')->with('success', 'Ticket has been deleted!');
+        return redirect('/dashboard/tickets/manage')->with('success', 'Ticket has been deleted!');
     }
 }

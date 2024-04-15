@@ -92,12 +92,12 @@
                                             <a href="/dashboard/tickets/{{ $ticket->id }}/edit" class="badge bg-warning">
                                                 <span data-feather="edit"></span>
                                             </a>
-                                            <form action="/dashboard/tickets/{{ $ticket->id }}" method="post"
+                                            <form action="/dashboard/tickets/{{ $ticket->id }}/delete" method="post"
                                                 class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="badge bg-danger border-0"
-                                                    onclick="return confirm('Are you sure?')">
+                                                    onclick="return confirm('Are you sure want to delete {{ $ticket->name }}?')">
                                                     <span data-feather="x-circle"></span>
                                                 </button>
                                             </form>
