@@ -19,7 +19,7 @@
                     @if (Request::is('dashboard/tickets/manage'))
                         <a href="/dashboard/tickets/create" class="btn btn-primary my-1">Create new Ticket</a>
                     @else
-                        <a href="/dashboard/tickets/create" class="btn btn-primary">Manage Ticket</a>
+                        <a href="/dashboard/tickets/create" class="btn btn-primary">Use Ticket</a>
                     @endif
                 </div>
             </div>
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>User tickets table</h4>
+                    <h4>User tickets confirmations</h4>
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -55,7 +55,7 @@
                                     <td>{{ $ticket->total_price }}</td>
                                     @if (Request::is('dashboard/tickets/manage'))
                                         <td>
-                                            @if ($ticket->status == 0 && Request::is('dashboard/tickets/manage'))
+                                            @if ($ticket->status == 1 && Request::is('dashboard/tickets/manage'))
                                                 <a href="/dashboard/tickets/{{ $ticket->slug }}" class="badge bg-info">
                                                     <span data-feather="check-circle"></span>
                                                 </a>
