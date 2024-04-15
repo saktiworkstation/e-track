@@ -13,16 +13,17 @@
     @endif
 
     <div class="table-responsive col-md-11">
-        @if (Request::is('dashboard/tickets/manage'))
-            <div class="col-sm-4 mb-3 mb-sm-4">
-                <div class="card border-primary">
-                    <div class="card-body">
-                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1 mx-3">Create new Ticket</a>
-                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1">Manage Ticket</a>
-                    </div>
+        <div class="col-sm-2 mb-3 mb-sm-4">
+            <div class="card border-primary">
+                <div class="card-body">
+                    @if (Request::is('dashboard/tickets/manage'))
+                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1">Create new Ticket</a>
+                    @else
+                        <a href="/dashboard/tickets/create" class="btn btn-primary">Manage Ticket</a>
+                    @endif
                 </div>
             </div>
-        @endif
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
