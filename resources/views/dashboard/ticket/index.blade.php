@@ -35,6 +35,7 @@
                                 <th scope="col">Ticket Name</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Code</th>
                                 <th scope="col">Total Price</th>
                                 @if (Request::is('dashboard/tickets/manage'))
                                     <th scope="col">Action</th>
@@ -49,6 +50,7 @@
                                     <td>{{ $ticket->tickets->name }}</td>
                                     <td>{{ $ticket->status }}</td>
                                     <td>{{ $ticket->amount }}</td>
+                                    <td>{{ $ticket->code }}</td>
                                     <td>{{ $ticket->total_price }}</td>
                                     @if (Request::is('dashboard/tickets/manage'))
                                         <td>
