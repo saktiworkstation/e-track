@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h4>User tickets confirmations</h4>
+                    <h4>User tickets</h4>
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
@@ -49,7 +49,15 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ticket->users->username }}</td>
                                     <td>{{ $ticket->tickets->name }}</td>
-                                    <td>{{ $ticket->status }}</td>
+                                    <td>
+                                        @if ($ticket->status == 0)
+                                            Have not been used
+                                        @elseif ($ticket->status == 1)
+                                            Waiting for usage confirmation
+                                        @else
+                                            Already used
+                                        @endif
+                                    </td>
                                     <td>{{ $ticket->amount }}</td>
                                     <td>{{ $ticket->code }}</td>
                                     <td>{{ $ticket->total_price }}</td>
