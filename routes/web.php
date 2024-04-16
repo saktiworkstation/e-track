@@ -29,12 +29,18 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
-// user tiket
+//* user tiket
+// user tickets & tickets page for user
 Route::get('/dashboard/tickets', [TicketController::class, 'index'])->middleware('auth');
+// create ticket
 Route::get('/dashboard/tickets/create', [TicketController::class, 'create'])->middleware('auth')->middleware('admin');
 Route::post('/dashboard/tickets', [TicketController::class, 'store'])->middleware('auth')->middleware('admin');
+// user tickets & tickets page for admin
 Route::get('/dashboard/tickets/manage', [TicketController::class, 'manage'])->middleware('auth')->middleware('admin');
+// edit ticket
 Route::get('/dashboard/tickets/{id}/edit', [TicketController::class, 'edit'])->middleware('auth')->middleware('admin');
 Route::put('/dashboard/tickets/{id}/edit', [TicketController::class, 'update'])->middleware('auth')->middleware('admin');
+// delete ticket
 Route::delete('/dashboard/tickets/{id}/delete', [TicketController::class, 'destroy'])->middleware('auth')->middleware('admin');
+// use user ticket
 Route::get('/dashboard/tickets/submit', [TicketController::class, 'useTicket'])->middleware('auth');
