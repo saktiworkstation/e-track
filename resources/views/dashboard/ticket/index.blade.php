@@ -26,7 +26,7 @@
                     @if (Request::is('dashboard/tickets/manage'))
                         <a href="/dashboard/tickets/create" class="btn btn-primary my-1">Create new Ticket</a>
                     @else
-                        <a href="/dashboard/tickets/create" class="btn btn-primary">Use Ticket</a>
+                        <a href="/dashboard/tickets/submit" class="btn btn-primary">Use Ticket</a>
                     @endif
                 </div>
             </div>
