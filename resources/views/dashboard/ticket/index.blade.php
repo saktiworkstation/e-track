@@ -12,7 +12,14 @@
         </div>
     @endif
 
-    <div class="table-responsive col-md-11">
+    @if (Request::is('dashboard/tickets'))
+        <div class="alert alert-success alert-dismissible fade show col-lg-5" role="alert">
+            Remember or copy the ticket code to use the ticket, then wait until the confirmation is complete
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <div class="table-responsive col-sd-11">
         <div class="col-sm-2 mb-3 mb-sm-4">
             <div class="card border-primary">
                 <div class="card-body">
