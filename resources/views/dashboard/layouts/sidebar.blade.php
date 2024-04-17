@@ -28,6 +28,13 @@
                         Tickets
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/tickets/report*') ? 'active' : '' }}"
+                        href="/dashboard/tickets/report">
+                        <span data-feather="file-text"></span>
+                        User Tickets Report
+                    </a>
+                </li>
             </ul>
         @endcan
     </div>
