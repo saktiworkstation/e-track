@@ -126,7 +126,7 @@ class TicketController extends Controller
     }
 
     public function userReport(){
-        return view('', [
+        return view('dashboard.ticket.user-report', [
             'userTickets' => UserTicket::latest()->get()
         ]);
     }
