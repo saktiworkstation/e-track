@@ -71,7 +71,8 @@
                                     @if (Request::is('dashboard/tickets/manage'))
                                         <td>
                                             @if ($ticket->status == 1 && Request::is('dashboard/tickets/manage'))
-                                                <a href="/dashboard/tickets/{{ $ticket->slug }}" class="badge bg-info">
+                                                <a href="/dashboard/tickets/{{ $ticket->id }}/confirm"
+                                                    class="badge bg-info">
                                                     <span data-feather="check-circle"></span>
                                                 </a>
                                             @endif
