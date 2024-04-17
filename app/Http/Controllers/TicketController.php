@@ -124,4 +124,10 @@ class TicketController extends Controller
             return redirect('/dashboard/tickets/manage')->with('success', 'Ticket has been confirmed, please use another ticket!');
         }
     }
+
+    public function userReport(){
+        return view('', [
+            'userTickets' => UserTicket::latest()->get()
+        ]);
+    }
 }
