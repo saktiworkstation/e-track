@@ -47,3 +47,5 @@ Route::get('/dashboard/tickets/submit', [TicketController::class, 'useTicket'])-
 Route::put('/dashboard/tickets/submit', [TicketController::class, 'submitTicket'])->middleware('auth');
 // confirmation tiket usage
 Route::get('/dashboard/tickets/{id}/confirm', [TicketController::class, 'ticketConfirmation'])->middleware('auth')->middleware('admin');
+// user tickets report
+Route::get('/dashboard/tickets/report', [TicketController::class, 'userReport'])->middleware('auth')->middleware('admin');
