@@ -44,3 +44,4 @@ Route::put('/dashboard/tickets/{id}/edit', [TicketController::class, 'update'])-
 Route::delete('/dashboard/tickets/{id}/delete', [TicketController::class, 'destroy'])->middleware('auth')->middleware('admin');
 // use user ticket
 Route::get('/dashboard/tickets/submit', [TicketController::class, 'useTicket'])->middleware('auth');
+Route::put('/dashboard/tickets/submit', [TicketController::class, 'submitTicket'])->middleware('auth');
