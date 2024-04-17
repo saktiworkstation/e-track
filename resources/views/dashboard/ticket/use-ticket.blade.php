@@ -7,10 +7,11 @@
 
     <div class="col-lg-8">
         <form method="post" action="/dashboard/tickets/submit" class="mb-5" enctype="multipart/form-data">
+            @method('put')
             @csrf
             <div class="mb-3">
                 <label for="code" class="form-label">Ticket code to be used</label>
-                <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" code="code"
+                <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" name="code"
                     required autofocus value="{{ old('code') }}">
                 @error('code')
                     <div class="invalid-feedback">
