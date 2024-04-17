@@ -105,4 +105,23 @@ class TicketController extends Controller
             return redirect('/dashboard/tickets')->with('success', 'Ticket has been used, please use another ticket!');
         }
     }
+
+    public function ticketConfirmation($id){
+        $ticket = UserTicket::where('id', $id)->firstOrFail();
+
+        $newdata = [];
+
+        $oldStatus = $ticket->status;
+        $newStatus = 0;
+        if($oldStatus == 1){
+            $newStatus = $oldStatus + 1;
+            $newdata['status'] = $newStatus;
+            UserTicket::where('id', $id)->update($newdata);
+            return redirect('/dashboard/tickets')->with('success', 'Ticket confirmed successfully!');
+        }elseif($oldStatus == 0){
+            return redirect('/dashboard/tickets')->with('success', 'Tickets await use by user!');
+        }else {
+            return redirect('/dashboard/tickets')->with('success', 'Ticket has been confirmed, please use another ticket!');
+        }
+    }
 }
