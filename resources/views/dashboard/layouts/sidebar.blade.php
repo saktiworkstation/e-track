@@ -35,6 +35,12 @@
                         User Tickets Report
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/events*') ? 'active' : '' }}" href="/dashboard/events">
+                        <span data-feather="calendar"></span>
+                        Events
+                    </a>
+                </li>
             </ul>
         @endcan
     </div>
