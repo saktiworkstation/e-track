@@ -11,7 +11,7 @@ class LandPageController extends Controller
     public function index(){
         return view('landing-page', [
             'tickets' => Ticket::orderBy('created_at', 'asc')->paginate(6),
-            'events' => Event::latest()->get()
+            'events' => Event::latest()->paginate(3)
         ]);
     }
 }
