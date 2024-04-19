@@ -14,6 +14,8 @@
 
     @include('partials.hero')
 
+    @include('partials.event')
+
     @include('partials.ticket')
 
     @include('partials.footer')
