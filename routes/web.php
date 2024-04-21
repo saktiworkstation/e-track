@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LandPageController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
@@ -49,3 +50,8 @@ Route::put('/dashboard/tickets/submit', [TicketController::class, 'submitTicket'
 Route::get('/dashboard/tickets/{id}/confirm', [TicketController::class, 'ticketConfirmation'])->middleware('auth')->middleware('admin');
 // user tickets report
 Route::get('/dashboard/tickets/report', [TicketController::class, 'userReport'])->middleware('auth')->middleware('admin');
+
+
+// * event
+// event management
+Route::get('/dashboard/events', [EventController::class, 'index'])->middleware('auth')->middleware('admin');
