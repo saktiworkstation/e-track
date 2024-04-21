@@ -12,7 +12,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.event.index', [
+            'events' => Event::latest()->get(),
+        ]);
     }
 
     /**
