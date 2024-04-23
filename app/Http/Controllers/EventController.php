@@ -14,6 +14,7 @@ class EventController extends Controller
     {
         return view('dashboard.event.index', [
             'events' => Event::latest()->get(),
+            'title' => 'Events',
         ]);
     }
 
