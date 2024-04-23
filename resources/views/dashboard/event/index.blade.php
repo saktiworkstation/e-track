@@ -32,45 +32,24 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Ticket Name</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Code</th>
-                                <th scope="col">Total Price</th>
-                                @if (Request::is('dashboard/tickets/manage'))
-                                    <th scope="col">Action</th>
-                                @endif
+                                <th scope="col">Title</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Published at</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($userTickets as $ticket)
+                            @foreach ($events as $event)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $ticket->users->username }}</td>
-                                    <td>{{ $ticket->tickets->name }}</td>
+                                    <td>{!! $event->tittle !!}</td>
+                                    <td>{!! $event->content !!}</td>
+                                    <td>{{ $event->published_at }}</td>
                                     <td>
-                                        @if ($ticket->status == 0)
-                                            Have not been used
-                                        @elseif ($ticket->status == 1)
-                                            Waiting for usage confirmation
-                                        @else
-                                            Already used
-                                        @endif
+                                        <a href="/dashboard/events/{{ $event->id }}/confirm" class="badge bg-info">
+                                            <span data-feather="check-circle"></span>
+                                        </a>
                                     </td>
-                                    <td>{{ $ticket->amount }}</td>
-                                    <td>{{ $ticket->code }}</td>
-                                    <td>{{ $ticket->total_price }}</td>
-                                    @if (Request::is('dashboard/tickets/manage'))
-                                        <td>
-                                            @if ($ticket->status == 1 && Request::is('dashboard/tickets/manage'))
-                                                <a href="/dashboard/tickets/{{ $ticket->id }}/confirm"
-                                                    class="badge bg-info">
-                                                    <span data-feather="check-circle"></span>
-                                                </a>
-                                            @endif
-                                        </td>
-                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
