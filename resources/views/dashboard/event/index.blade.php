@@ -16,17 +16,13 @@
         <div class="col-sm-2 mb-3 mb-sm-4">
             <div class="card border-primary">
                 <div class="card-body">
-                    @if (Request::is('dashboard/tickets/manage'))
-                        <a href="/dashboard/tickets/create" class="btn btn-primary my-1">Create new Ticket</a>
-                    @else
-                        <a href="/dashboard/tickets/submit" class="btn btn-primary">Use Ticket</a>
-                    @endif
+                    <a href="/dashboard/events/create" class="btn btn-primary my-1">Create new Events</a>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h4>Events</h4>
                     <table class="table table-striped table-sm">
                         <thead>
@@ -42,7 +38,7 @@
                             @foreach ($events as $event)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{!! $event->tittle !!}</td>
+                                    <td>{{ $event->title }}</td>
                                     <td>{!! $event->content !!}</td>
                                     <td>{{ $event->published_at }}</td>
                                     <td>
