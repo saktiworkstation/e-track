@@ -55,7 +55,9 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('dashboard.event.create', [
+            'event' => $event
+        ]);
     }
 
     /**
