@@ -55,3 +55,5 @@ Route::get('/dashboard/tickets/report', [TicketController::class, 'userReport'])
 // * event
 // event management
 Route::get('/dashboard/events', [EventController::class, 'index'])->middleware('auth')->middleware('admin');
+// create event form
+Route::get('/dashboard/events/create', [EventController::class, 'create'])->middleware('auth')->middleware('admin');
