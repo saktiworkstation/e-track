@@ -65,7 +65,20 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $rules = [
+            'published_at' => 'required|date',
+            'content' => 'required'
+        ];
+
+        if ($request->title != $event->title) {
+            $rules['title'] = 'required|max:255|unique:tickets';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        Event::where('id', $event->id)->update($validatedData);
+
+        return redirect('/dashboard/events/manage')->with('success', 'Event has been updated!');
     }
 
     /**
