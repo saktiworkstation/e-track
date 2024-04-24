@@ -61,3 +61,5 @@ Route::get('/dashboard/events/create', [EventController::class, 'create'])->midd
 Route::post('/dashboard/events/create', [EventController::class, 'store'])->middleware('auth')->middleware('admin');
 // edit event form
 Route::get('/dashboard/events/{event:id}/edit', [EventController::class, 'edit'])->middleware('auth')->middleware('admin');
+// update event data
+Route::put('/dashboard/events/{event:id}/edit', [EventController::class, 'update'])->middleware('auth')->middleware('admin');
