@@ -71,14 +71,14 @@ class EventController extends Controller
         ];
 
         if ($request->title != $event->title) {
-            $rules['title'] = 'required|max:255|unique:tickets';
+            $rules['title'] = 'required|max:255|unique:events';
         }
 
         $validatedData = $request->validate($rules);
 
         Event::where('id', $event->id)->update($validatedData);
 
-        return redirect('/dashboard/events/manage')->with('success', 'Event has been updated!');
+        return redirect('/dashboard/events')->with('success', 'Event has been updated!');
     }
 
     /**
