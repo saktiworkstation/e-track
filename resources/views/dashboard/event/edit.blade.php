@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3">
                 <label for="published_at" class="form-label">Publihed Date</label>
-                <input type="date" class="form-control @error('published_at') is-invalid @enderror" id="published_at"
+                <input type="datetime" class="form-control @error('published_at') is-invalid @enderror" id="published_at"
                     name="published_at" required autofocus value="{{ old('published_at', $event->published_at) }}">
                 @error('published_at')
                     <div class="invalid-feedback">
