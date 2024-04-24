@@ -31,7 +31,15 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255|unique:events',
+            'published_at' => 'required|datetime',
+            'content' => 'required'
+        ]);
+
+        Event::create($validatedData);
+
+        return redirect('/dashboard/events')->with('success', 'New event has been added!');
     }
 
     /**
