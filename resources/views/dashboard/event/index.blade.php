@@ -42,9 +42,18 @@
                                     <td>{!! $event->content !!}</td>
                                     <td>{{ $event->published_at }}</td>
                                     <td>
-                                        <a href="/dashboard/events/{{ $event->id }}/confirm" class="badge bg-info">
-                                            <span data-feather="check-circle"></span>
+                                        <a href="/dashboard/events/{{ $event->id }}/edit" class="badge bg-warning">
+                                            <span data-feather="edit"></span>
                                         </a>
+                                        <form action="/dashboard/events/{{ $event->id }}/delete" method="post"
+                                            class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="badge bg-danger border-0"
+                                                onclick="return confirm('Are you sure want to delete {{ $event->title }}?')">
+                                                <span data-feather="x-circle"></span>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
