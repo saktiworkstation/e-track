@@ -33,7 +33,7 @@ class EventController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255|unique:events',
-            'published_at' => 'required|datetime',
+            'published_at' => 'required|date',
             'content' => 'required'
         ]);
 

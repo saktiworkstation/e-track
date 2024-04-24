@@ -19,10 +19,10 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="publihed_at" class="form-label">Publihed Date</label>
-                <input type="datetime" class="form-control @error('publihed_at') is-invalid @enderror" id="publihed_at"
-                    name="publihed_at" required autofocus value="{{ old('publihed_at') }}">
-                @error('publihed_at')
+                <label for="published_at" class="form-label">Publihed Date</label>
+                <input type="date" class="form-control @error('published_at') is-invalid @enderror" id="published_at"
+                    name="published_at" required autofocus value="{{ old('published_at') }}">
+                @error('published_at')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
