@@ -17,7 +17,12 @@ class NotificationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => mt_rand(1, 2),
+            'message' => $this->faker->sentence,
+            'status' => mt_rand(1, 2),
+            'link' => $this->faker->url,
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
