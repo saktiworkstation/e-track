@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Event;
+use App\Models\Notification;
 use App\Models\Ticket;
 use App\Models\User;
 use App\Models\UserTicket;
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         Ticket::factory(10)->create();
         UserTicket::factory(10)->create();
         Event::factory(10)->create();
+        Notification::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
