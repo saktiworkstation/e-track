@@ -12,7 +12,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.notification.index',[
+            'title' => 'Notification',
+        ]);
     }
 
     /**
