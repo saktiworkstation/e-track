@@ -14,6 +14,12 @@
                     My Tickets
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/tickets') ? 'active' : '' }}" href="/dashboard/tickets">
+                    <span data-feather="bell"></span>
+                    My Notification
+                </a>
+            </li>
         </ul>
 
         @can('admin')
@@ -39,6 +45,12 @@
                     <a class="nav-link {{ Request::is('dashboard/events*') ? 'active' : '' }}" href="/dashboard/events">
                         <span data-feather="calendar"></span>
                         Events
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/events*') ? 'active' : '' }}" href="/dashboard/events">
+                        <span data-feather="archive"></span>
+                        Notifications
                     </a>
                 </li>
             </ul>
