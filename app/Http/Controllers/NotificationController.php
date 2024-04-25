@@ -14,6 +14,7 @@ class NotificationController extends Controller
     {
         return view('dashboard.notification.index',[
             'title' => 'Notification',
+            'notifications' => Notification::latest()->get(),
         ]);
     }
 
