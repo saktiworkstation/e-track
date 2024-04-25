@@ -15,7 +15,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/tickets') ? 'active' : '' }}" href="/dashboard/tickets">
+                <a class="nav-link {{ Request::is('dashboard/notifications') ? 'active' : '' }}"
+                    href="/dashboard/notifications">
                     <span data-feather="bell"></span>
                     My Notification
                 </a>
@@ -48,7 +49,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dashboard/events*') ? 'active' : '' }}" href="/dashboard/events">
+                    <a class="nav-link {{ Request::is('dashboard/notifications/manage*') ? 'active' : '' }}"
+                        href="/dashboard/notifications/manage">
                         <span data-feather="archive"></span>
                         Notifications
                     </a>
