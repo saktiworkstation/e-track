@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->text('message');
+            $table->integer('status');
+            $table->string('link');
             $table->timestamps();
         });
     }
