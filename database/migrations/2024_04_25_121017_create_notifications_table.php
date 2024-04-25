@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->text('message');
             $table->integer('status');
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
