@@ -60,7 +60,10 @@ class NotificationController extends Controller
      */
     public function edit(Notification $notification)
     {
-        //
+        return view('dashboard.notification.edit', [
+            'users' => User::orderBy('name', 'ASC')->get(),
+            'notification' => $notification,
+        ]);
     }
 
     /**
