@@ -92,4 +92,11 @@ class NotificationController extends Controller
         Notification::destroy($notification->id);
         return redirect('/dashboard/notifications')->with('success', 'Notification has been deleted!');
     }
+
+    public function userPage(){
+        return view('dashboard.notification.user', [
+            'title' => 'My Notification',
+            'notification' => Notification::where('user_id', auth()->user()->id)->get()
+        ]);
+    }
 }
