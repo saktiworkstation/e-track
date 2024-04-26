@@ -44,7 +44,7 @@ class NotificationController extends Controller
 
         Notification::create($validatedData);
 
-        return redirect('/dashboard/notivications')->with('success', 'New notifications has been sended!');
+        return redirect('/dashboard/notifications')->with('success', 'New notifications has been sended!');
     }
 
     /**
