@@ -15,8 +15,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/notifications') ? 'active' : '' }}"
-                    href="/dashboard/notifications">
+                <a class="nav-link {{ Request::is('dashboard/notifications/user') ? 'active' : '' }}"
+                    href="/dashboard/notifications/user">
                     <span data-feather="bell"></span>
                     My Notification
                 </a>
@@ -30,7 +30,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/tickets/manage*') ? 'active' : '' }}"
-                        href="/dashboard/tickets/user">
+                        href="/dashboard/tickets/manage">
                         <span data-feather="file-plus"></span>
                         Tickets
                     </a>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dashboard/notifications/manage*') ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('dashboard/notifications') ? 'active' : '' }}"
                         href="/dashboard/notifications">
                         <span data-feather="archive"></span>
                         Notifications
