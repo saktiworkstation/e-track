@@ -89,6 +89,7 @@ class NotificationController extends Controller
      */
     public function destroy(Notification $notification)
     {
-        //
+        Notification::destroy($notification->id);
+        return redirect('/dashboard/notifications')->with('success', 'Notification has been deleted!');
     }
 }
