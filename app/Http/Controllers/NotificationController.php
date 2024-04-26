@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,9 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.notification.create', [
+            'users' => User::orderBy('name', 'ASC')->get(),
+        ]);
     }
 
     /**
