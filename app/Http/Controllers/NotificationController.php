@@ -71,7 +71,17 @@ class NotificationController extends Controller
      */
     public function update(Request $request, Notification $notification)
     {
-        //
+        $rules = [
+            'user_id' => 'required',
+            'link' => 'required|url',
+            'message' => 'required'
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        notification::where('id', $notification->id)->update($validatedData);
+
+        return redirect('/dashboard/notifications')->with('success', 'Notification has been chnged!');
     }
 
     /**
