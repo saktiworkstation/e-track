@@ -40,7 +40,7 @@ class NotificationController extends Controller
             'message' => 'required'
         ]);
 
-        $validatedData['status'] = 0;
+        $validatedData['status'] = 1;
 
         Notification::create($validatedData);
 
