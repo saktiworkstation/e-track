@@ -34,7 +34,17 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required',
+            'link' => 'required|url',
+            'message' => 'required'
+        ]);
+
+        $validatedData['status'] = 0;
+
+        Notification::create($validatedData);
+
+        return redirect('/dashboard/notivications')->with('success', 'New notifications has been sended!');
     }
 
     /**
