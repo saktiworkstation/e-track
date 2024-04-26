@@ -68,5 +68,7 @@ Route::put('/dashboard/events/{event:id}/edit', [EventController::class, 'update
 Route::delete('/dashboard/events/{event:id}/delete', [EventController::class, 'destroy'])->middleware('auth')->middleware('admin');
 
 // * notification
+// users notifications page
+Route::get('/dashboard/notifications/user', [NotificationController::class, 'userPage'])->middleware('auth');
 // admin view
 Route::resource('/dashboard/notifications', NotificationController::class)->middleware('auth')->middleware('admin');
