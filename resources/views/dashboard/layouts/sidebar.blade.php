@@ -30,7 +30,7 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/tickets/manage*') ? 'active' : '' }}"
-                        href="/dashboard/tickets/manage">
+                        href="/dashboard/tickets/user">
                         <span data-feather="file-plus"></span>
                         Tickets
                     </a>
@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/notifications/manage*') ? 'active' : '' }}"
-                        href="/dashboard/notifications/manage">
+                        href="/dashboard/notifications">
                         <span data-feather="archive"></span>
                         Notifications
                     </a>

@@ -69,4 +69,4 @@ Route::delete('/dashboard/events/{event:id}/delete', [EventController::class, 'd
 
 // * notification
 // admin view
-Route::get('/dashboard/notifications/manage', [NotificationController::class, 'index'])->middleware('auth')->middleware('admin');
+Route::resource('/dashboard/notifications', NotificationController::class)->middleware('auth')->middleware('admin');
