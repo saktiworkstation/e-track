@@ -50,12 +50,12 @@
                                             class="badge bg-warning">
                                             <span data-feather="edit"></span>
                                         </a>
-                                        <form action="/dashboard/notifications/{{ $notif->id }}/delete" method="post"
+                                        <form action="/dashboard/notifications/{{ $notif->id }}" method="post"
                                             class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="badge bg-danger border-0"
-                                                onclick="return confirm('Are you sure want to delete {{ $notif->title }}?')">
+                                                onclick="return confirm('Are you sure want to delete?')">
                                                 <span data-feather="x-circle"></span>
                                             </button>
                                         </form>
