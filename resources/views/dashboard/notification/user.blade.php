@@ -21,7 +21,7 @@
                         <p class="card-text">{!! $notif->message !!}.</p>
                         <div class="d-flex">
                             <div class="p-2 w-100"><a href="#" class="btn btn-primary"><span
-                                        data-feather="external-Add an icon to the buttonlink"></span>
+                                        data-feather="external-link"></span>
                                     Go
                                     To the link of message</a></div>
                             <div class="p-2 flex-shrink-1"><a href="#" class="btn btn-danger"><span
