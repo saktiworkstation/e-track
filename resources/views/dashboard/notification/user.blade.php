@@ -20,7 +20,7 @@
                         <h5 class="card-title">Sent on. {{ $notif->created_at }}</h5>
                         <p class="card-text">{!! $notif->message !!}.</p>
                         <div class="d-flex">
-                            <div class="p-2 w-100"><a href="#" class="btn btn-primary"><span
+                            <div class="p-2 w-100"><a href="{{ $notif->link }}" class="btn btn-primary"><span
                                         data-feather="external-link"></span>
                                     Go
                                     To the link of message</a></div>
