@@ -24,8 +24,14 @@
                                         data-feather="external-link"></span>
                                     Go
                                     To the link of message</a></div>
-                            <div class="p-2 flex-shrink-1"><a href="#" class="btn btn-danger"><span
-                                        data-feather="trash-2"></span> Delete</a></div>
+                            <form action="/dashboard/notifications/{{ $notif->id }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="btn btn-danger p-2 flex-shrink-1"
+                                    onclick="return confirm('Are you sure want to delete?')">
+                                    <span data-feather="trash-2"></span> Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
