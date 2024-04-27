@@ -13,21 +13,23 @@
     @endif
 
     <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <div class="d-flex">
-                        <div class="p-2 w-100"><a href="#" class="btn btn-primary"><span
-                                    data-feather="external-Add an icon to the buttonlink"></span>
-                                Go
-                                To the link of message</a></div>
-                        <div class="p-2 flex-shrink-1"><a href="#" class="btn btn-danger"><span
-                                    data-feather="trash-2"></span> Delete</a></div>
+        @foreach ($notifications as $notif)
+            <div class="col-sm-6 mb-3 mb-sm-0 pb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sent on. {{ $notif->created_at }}</h5>
+                        <p class="card-text">{!! $notif->message !!}.</p>
+                        <div class="d-flex">
+                            <div class="p-2 w-100"><a href="#" class="btn btn-primary"><span
+                                        data-feather="external-Add an icon to the buttonlink"></span>
+                                    Go
+                                    To the link of message</a></div>
+                            <div class="p-2 flex-shrink-1"><a href="#" class="btn btn-danger"><span
+                                        data-feather="trash-2"></span> Delete</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 @endsection
