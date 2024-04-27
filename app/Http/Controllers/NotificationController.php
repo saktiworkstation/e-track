@@ -96,7 +96,7 @@ class NotificationController extends Controller
     public function userPage(){
         return view('dashboard.notification.user', [
             'title' => 'My Notification',
-            'notifications' => Notification::where('user_id', auth()->user()->id)->get()
+            'notifications' => Notification::where('user_id', auth()->user()->id)->paginate(4)
         ]);
     }
 }
