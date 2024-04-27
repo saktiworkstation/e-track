@@ -32,4 +32,7 @@
             </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        {{ $notifications->links() }}
+    </div>
 @endsection
