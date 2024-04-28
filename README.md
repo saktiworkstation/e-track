@@ -1,4 +1,3 @@
-```markdown
 # Aplikasi Pembelian Tiket untuk Wahana
 
 Aplikasi ini dibangun menggunakan Laravel dan database MySQL untuk menyediakan layanan pembelian tiket untuk berbagai wahana.
