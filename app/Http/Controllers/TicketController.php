@@ -130,4 +130,19 @@ class TicketController extends Controller
             'userTickets' => UserTicket::latest()->get()
         ]);
     }
+
+    public function buyTicket(Request $request, $id){
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric',
+            'total_price' => 'required|numeric',
+        ]);
+
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['ticket_id'] = $id;
+        $validatedData['status'] = 0;
+
+        UserTicket::create($validatedData);
+
+        return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
+    }
 }
