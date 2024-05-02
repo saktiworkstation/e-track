@@ -131,6 +131,13 @@ class TicketController extends Controller
         ]);
     }
 
+    public function buyForm($id){
+        return view('dashboard.ticket.buy-ticket', [
+            'tickets' => Ticket::latest()->get(),
+            'ticketId' => $id
+        ]);
+    }
+
     public function buyTicket(Request $request, $id){
         $validatedData = $request->validate([
             'amount' => 'required|numeric',

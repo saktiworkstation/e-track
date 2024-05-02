@@ -22,7 +22,7 @@
                 <label for="user" class="form-label">User</label>
                 <select class="form-select" name="user_id" id="user">
                     @foreach ($tickets as $ticket)
-                        @if (old('id') == $ticket->id)
+                        @if (old('id') == $ticketId)
                             <option value="{{ $ticket->id }}" selected>{{ $ticket->name }} | Price/1 Ticket :
                                 {{ $ticket->price }}
                             </option>
