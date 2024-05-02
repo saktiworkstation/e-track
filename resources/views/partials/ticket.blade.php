@@ -16,12 +16,16 @@
                             <h4 class="my-0 fw-normal">{{ $ticket->name }}</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title pricing-card-title">${{ $ticket->price }}</h1>
+                            <h1 class="card-title pricing-card-title">IDR. {{ $ticket->price }}</h1>
                             <p class="mt-3 mb-4">
                                 {!! $ticket->descriptions !!}
                             </p>
-                            <a href="/dashboard/tickets/purchase/{{ $ticket->id }}"
-                                class="w-100 btn btn-lg btn-primary">Detail</a>
+                            @if (auth()->check())
+                                <a href="/dashboard/tickets/purchase/{{ $ticket->id }}"
+                                    class="w-100 btn btn-lg btn-primary">Detail</a>
+                            @else
+                                <a href="/login" class="w-100 btn btn-lg btn-primary">Detail</a>
+                            @endif
                         </div>
                     </div>
                 </div>
