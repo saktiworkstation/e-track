@@ -7,6 +7,7 @@ use App\Models\UserTicket;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TicketController extends Controller
 {
@@ -149,10 +150,20 @@ class TicketController extends Controller
         $amount = $request->amount;
         $total_price = $price * $amount;
 
+        $uniqueCode = uniqid();
+
+        while (UserTicket::where('code', $uniqueCode)->exists()) {
+            $uniqueCode = uniqid();
+        }
+
+        $validatedData['code'] = $uniqueCode;
+
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['ticket_id'] = $id;
         $validatedData['status'] = 0;
         $validatedData['total_price'] = $total_price;
+
+
 
         UserTicket::create($validatedData);
 
