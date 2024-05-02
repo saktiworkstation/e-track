@@ -139,14 +139,20 @@ class TicketController extends Controller
     }
 
     public function buyTicket(Request $request, $id){
+        $ticket = Ticket::where('id', $id)->firstOrFail();
+
         $validatedData = $request->validate([
             'amount' => 'required|numeric',
-            'total_price' => 'required|numeric',
         ]);
+
+        $price = $ticket->price;
+        $amount = $request->amount;
+        $total_price = $price * $amount;
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['ticket_id'] = $id;
         $validatedData['status'] = 0;
+        $validatedData['total_price'] = $total_price;
 
         UserTicket::create($validatedData);
 

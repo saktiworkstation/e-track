@@ -54,7 +54,7 @@ Route::get('/dashboard/tickets/report', [TicketController::class, 'userReport'])
 // user tickets purcahase
 Route::get('/dashboard/tickets/purchase/{id}', [TicketController::class, 'buyForm'])->middleware('auth');
 // user tickets purcahase proccese
-Route::post('/dashboard/tickets/purchase', [TicketController::class, 'buyTicket'])->middleware('auth');
+Route::post('/dashboard/tickets/purchase/{id}', [TicketController::class, 'buyTicket'])->middleware('auth');
 
 
 // * event
