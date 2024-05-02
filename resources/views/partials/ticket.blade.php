@@ -20,7 +20,8 @@
                             <p class="mt-3 mb-4">
                                 {!! $ticket->descriptions !!}
                             </p>
-                            <a href="#" class="w-100 btn btn-lg btn-primary">Detail</a>
+                            <a href="/dashboard/tickets/purchase/{{ $ticket->id }}"
+                                class="w-100 btn btn-lg btn-primary">Detail</a>
                         </div>
                     </div>
                 </div>

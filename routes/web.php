@@ -52,7 +52,7 @@ Route::get('/dashboard/tickets/{id}/confirm', [TicketController::class, 'ticketC
 // user tickets report
 Route::get('/dashboard/tickets/report', [TicketController::class, 'userReport'])->middleware('auth')->middleware('admin');
 // user tickets purcahase
-Route::get('/dashboard/tickets/purchase/{$id}', [TicketController::class, 'buyForm'])->middleware('auth');
+Route::get('/dashboard/tickets/purchase/{id}', [TicketController::class, 'buyForm'])->middleware('auth');
 // user tickets purcahase proccese
 Route::post('/dashboard/tickets/purchase', [TicketController::class, 'buyTicket'])->middleware('auth');
 

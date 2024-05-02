@@ -10,7 +10,7 @@
             @csrf
             <div class="mb-3">
                 <label for="amount" class="form-label">amount</label>
-                <input type="text" class="form-control @error('amount') is-invalid @enderror" id="amount"
+                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
                     name="amount" required autofocus value="{{ old('amount') }}">
                 @error('amount')
                     <div class="invalid-feedback">
@@ -22,7 +22,7 @@
                 <label for="user" class="form-label">User</label>
                 <select class="form-select" name="user_id" id="user">
                     @foreach ($tickets as $ticket)
-                        @if (old('id') == $ticketId)
+                        @if (old('id', $ticketId) == $ticket->id)
                             <option value="{{ $ticket->id }}" selected>{{ $ticket->name }} | Price/1 Ticket :
                                 {{ $ticket->price }}
                             </option>
