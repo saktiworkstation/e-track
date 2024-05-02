@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/events/create" class="mb-5" enctype="multipart/form-data">
+        <form method="post" action="/dashboard/tickets/purchase" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="amount" class="form-label">amount</label>
