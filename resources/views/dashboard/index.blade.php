@@ -30,6 +30,10 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
+                                {{-- ? Skip the logged in user data --}}
+                                @if ($user->id == auth()->user()->id)
+                                    @continue
+                                @endif
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
