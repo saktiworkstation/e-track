@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use Midtrans\Transaction;
 use App\Models\UserTicket;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class TicketController extends Controller
 {
@@ -139,32 +142,98 @@ class TicketController extends Controller
         ]);
     }
 
-    public function buyTicket(Request $request, $id){
-        $ticket = Ticket::where('id', $id)->firstOrFail();
+    // ? No midtrans
+    // public function buyTicket(Request $request, $id){
+    //     $ticket = Ticket::where('id', $id)->firstOrFail();
 
+    //     $validatedData = $request->validate([
+    //         'amount' => 'required|numeric',
+    //     ]);
+
+    //     $price = $ticket->price;
+    //     $amount = $request->amount;
+    //     $total_price = $price * $amount;
+
+    //     $uniqueCode = uniqid();
+
+    //     while (UserTicket::where('code', $uniqueCode)->exists()) {
+    //         $uniqueCode = uniqid();
+    //     }
+
+    //     $validatedData['code'] = $uniqueCode;
+
+    //     $validatedData['user_id'] = auth()->user()->id;
+    //     $validatedData['ticket_id'] = $id;
+    //     $validatedData['status'] = 0;
+    //     $validatedData['total_price'] = $total_price;
+
+    //     UserTicket::create($validatedData);
+
+    //     return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
+    // }
+
+    // ? With midtrans
+    public function buyTicket(Request $request, $id){
+        // Ambil data tiket dari database
+        $ticket = Ticket::findOrFail($id);
+
+        // Validasi data input
         $validatedData = $request->validate([
             'amount' => 'required|numeric',
         ]);
 
+        // Hitung total harga
         $price = $ticket->price;
         $amount = $request->amount;
         $total_price = $price * $amount;
 
-        $uniqueCode = uniqid();
+        // Set data untuk pembelian tiket
+        $data['user_id'] = auth()->user()->id;
+        $data['ticket_id'] = $id;
+        $data['status'] = 0;
+        $data['total_price'] = $total_price;
 
+        // Generate kode unik
+        $uniqueCode = uniqid();
         while (UserTicket::where('code', $uniqueCode)->exists()) {
             $uniqueCode = uniqid();
         }
+        $data['code'] = $uniqueCode;
 
-        $validatedData['code'] = $uniqueCode;
+        // Mulai transaksi database
+        DB::beginTransaction();
 
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['ticket_id'] = $id;
-        $validatedData['status'] = 0;
-        $validatedData['total_price'] = $total_price;
+        try {
+            // Simpan data pembelian tiket ke dalam database
+            $userTicket = UserTicket::create($data);
 
-        UserTicket::create($validatedData);
+            // Konfigurasi Midtrans
+            Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+            Config::$isProduction = !env('MIDTRANS_IS_SANDBOX');
+            Config::$is3ds = true;
 
-        return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
+            // Buat transaksi pembayaran dengan Midtrans
+            $payload = [
+                'transaction_details' => [
+                    'order_id' => $userTicket->id,
+                    'gross_amount' => $total_price,
+                ],
+            ];
+
+            $snapToken = Snap::getSnapToken($payload);
+
+            // Commit transaksi database jika berhasil
+            DB::commit();
+
+            // Redirect pengguna ke halaman pembayaran Midtrans
+            return redirect()->away($snapToken);
+        } catch (\Exception $e) {
+            // Rollback transaksi database jika terjadi kesalahan
+            DB::rollback();
+
+            // Redirect pengguna ke halaman yang sesuai setelah pembayaran gagal
+            // Misalnya, halaman pembelian ulang atau halaman tiket
+            return redirect('/dashboard/tickets')->with('error', 'Failed to purchase ticket. Please try again later.');
+        }
     }
 }
