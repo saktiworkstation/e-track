@@ -27,10 +27,12 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/register', [AuthController::class, 'store']);
+//change user role
+Route::put('/auth/{id}/roling', [AuthController::class, 'rolling'])->middleware('auth')->middleware('admin');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index', [
-        'users' => User::latest()->get(),
+        'users' => User::orderBy('username', 'asc')->paginate(100),
     ]);
 })->middleware('auth');
 

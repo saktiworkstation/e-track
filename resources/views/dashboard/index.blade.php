@@ -47,25 +47,29 @@
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
-                                        @if ($user->status == 0)
+                                        @if ($user->is_admin == 0)
                                             Member
-                                        @elseif ($user->status == 1)
+                                        @elseif ($user->is_admin == 1)
                                             Admin
                                         @else
                                             This role is not available, please press the action button on this user
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="/auth/{{ $user->id }}/roling" class="badge bg-warning"
-                                            onclick="return confirm('Are you sure want to change | {{ $user->email }} | Role?')">
-                                            <span data-feather="edit"></span>
-                                        </a>
+                                        <form action="/auth/{{ $user->id }}/roling" method="POST" class="d-inline">
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="badge bg-warning border-0"
+                                                onclick="return confirm('Are you sure want to change | {{ $user->email }} | Role?')">
+                                                <span data-feather="edit"></span>
+                                            </button>
+                                        </form>
                                         <form action="/auth/{{ $user->id }}/delete" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="badge bg-danger border-0"
                                                 onclick="return confirm('Are you sure want to delete | {{ $user->email }} | ?')">
-                                                <span data-feather="x-circle"></span>
+                                                <span data-feather="trash"></span>
                                             </button>
                                         </form>
                                     </td>
@@ -73,6 +77,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center">
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
