@@ -136,7 +136,7 @@ class TicketController extends Controller
     }
 
     public function buyForm($id){
-        return view('dashboard.ticket.buy-ticket', [
+        return view('dashboard.ticket.buy-ticket-midtrans', [
             'tickets' => Ticket::latest()->get(),
             'ticketId' => $id
         ]);
@@ -188,24 +188,24 @@ class TicketController extends Controller
         $total_price = $price * $amount;
 
         // Set data untuk pembelian tiket
-        $data['user_id'] = auth()->user()->id;
-        $data['ticket_id'] = $id;
-        $data['status'] = 0;
-        $data['total_price'] = $total_price;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['ticket_id'] = $id;
+        $validatedData['status'] = 0;
+        $validatedData['total_price'] = $total_price;
 
         // Generate kode unik
         $uniqueCode = uniqid();
         while (UserTicket::where('code', $uniqueCode)->exists()) {
             $uniqueCode = uniqid();
         }
-        $data['code'] = $uniqueCode;
+        $validatedData['code'] = $uniqueCode;
 
-        // Mulai transaksi database
+        // Mulai transaksi validatedDatabase
         DB::beginTransaction();
 
         try {
-            // Simpan data pembelian tiket ke dalam database
-            $userTicket = UserTicket::create($data);
+            // Simpan validatedData pembelian tiket ke dalam validatedDatabase
+            $userTicket = UserTicket::create($validatedData);
 
             // Konfigurasi Midtrans
             Config::$serverKey = env('MIDTRANS_SERVER_KEY');
