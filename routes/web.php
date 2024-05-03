@@ -29,6 +29,8 @@ Route::get('/register', [AuthController::class, 'register'])->middleware('guest'
 Route::post('/register', [AuthController::class, 'store']);
 //change user role
 Route::put('/auth/{id}/roling', [AuthController::class, 'rolling'])->middleware('auth')->middleware('admin');
+// destroy event data
+Route::delete('/auth/{id}/delete', [AuthController::class, 'destroy'])->middleware('auth')->middleware('admin');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index', [
