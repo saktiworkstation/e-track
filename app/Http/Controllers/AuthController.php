@@ -86,4 +86,10 @@ class AuthController extends Controller
             return redirect('/dashboard')->with('error', 'Role User is not registered, please delete this user!');
         }
     }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+        return redirect('/dashboard')->with('success', 'User has been deleted!');
+    }
 }

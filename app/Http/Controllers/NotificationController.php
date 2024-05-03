@@ -91,8 +91,10 @@ class NotificationController extends Controller
     {
         Notification::destroy($notification->id);
         if(auth()->user()->is_admin == 0){
+            // redirect to user page
             return redirect('/dashboard/notifications/user')->with('success', 'Notification has been deleted!');
         }else if(auth()->user()->id_admin == 1){
+            // redirect to admin page
             return redirect('/dashboard/notifications')->with('success', 'Notification has been deleted!');
         }
     }
