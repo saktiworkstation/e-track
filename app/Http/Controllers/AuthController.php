@@ -66,4 +66,24 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    public function rolling($id){
+        $user = User::where('id', $id)->firstOrFail();
+        $newData = [];
+        if($user->is_admin == 0){
+            $oldRole = $user->is_admin;
+            $newRole = $oldRole + 1;
+            $newData['is_admin'] = $newRole;
+            User::where('id', $id)->update($newData);
+            return redirect('/dashboard')->with('success', 'User Role changed successfully!');
+        }elseif($user->is_admin == 1){
+            $oldRole = $user->is_admin;
+            $newRole = $oldRole - 1;
+            $newData['is_admin'] = $newRole;
+            User::where('id', $id)->update($newData);
+            return redirect('/dashboard')->with('success', 'User Role changed successfully!');
+        }else {
+            return redirect('/dashboard')->with('error', 'Role User is not registered, please delete this user!');
+        }
+    }
 }

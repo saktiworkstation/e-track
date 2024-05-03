@@ -12,6 +12,13 @@
         </div>
     @endif
 
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show col-lg-8" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="table-responsive col-sd-11">
         <div class="container">
             <div class="row">

@@ -39,16 +39,19 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/tickets', [TicketController::class, 'index'])->middleware('auth');
 // create ticket
 Route::get('/dashboard/tickets/create', [TicketController::class, 'create'])->middleware('auth')->middleware('admin');
+// submit new ticket data to database
 Route::post('/dashboard/tickets', [TicketController::class, 'store'])->middleware('auth')->middleware('admin');
 // user tickets & tickets page for admin
 Route::get('/dashboard/tickets/manage', [TicketController::class, 'manage'])->middleware('auth')->middleware('admin');
 // edit ticket
 Route::get('/dashboard/tickets/{id}/edit', [TicketController::class, 'edit'])->middleware('auth')->middleware('admin');
+// submit change to database
 Route::put('/dashboard/tickets/{id}/edit', [TicketController::class, 'update'])->middleware('auth')->middleware('admin');
 // delete ticket
 Route::delete('/dashboard/tickets/{id}/delete', [TicketController::class, 'destroy'])->middleware('auth')->middleware('admin');
 // use user ticket
 Route::get('/dashboard/tickets/submit', [TicketController::class, 'useTicket'])->middleware('auth');
+// submit to database, usage user ticket
 Route::put('/dashboard/tickets/submit', [TicketController::class, 'submitTicket'])->middleware('auth');
 // confirmation tiket usage
 Route::get('/dashboard/tickets/{id}/confirm', [TicketController::class, 'ticketConfirmation'])->middleware('auth')->middleware('admin');
