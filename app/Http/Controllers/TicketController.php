@@ -137,7 +137,7 @@ class TicketController extends Controller
     }
 
     public function buyForm($id){
-        return view('dashboard.ticket.buy-ticket-midtrans', [
+        return view('dashboard.ticket.buy-ticket', [
             'tickets' => Ticket::latest()->get(),
             'ticketId' => $id
         ]);
