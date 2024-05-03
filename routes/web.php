@@ -30,7 +30,7 @@ Route::post('/register', [AuthController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard.index', [
-        'users' => User::latest()->all(),
+        'users' => User::latest()->get(),
     ]);
 })->middleware('auth');
 
