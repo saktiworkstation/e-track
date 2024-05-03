@@ -23,6 +23,9 @@
             display: none;
         }
     </style>
+
+    <!-- Include Midtrans Script -->
+    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 </head>
 
 <body>

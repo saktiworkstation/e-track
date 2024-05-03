@@ -22,4 +22,29 @@
             <button id="pay-button" class="btn btn-primary">Buy Ticket</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('pay-button').onclick = function() {
+            var amount = document.getElementById('amount').value;
+            var ticketId = document.getElementById('ticket_id').value;
+
+            snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    // Redirect to success page or do whatever you want
+                    window.location.href = "/dashboard/tickets";
+                },
+                // Optional
+                onPending: function(result) {
+                    // Redirect to pending page or do whatever you want
+                    window.location.href = "/dashboard/tickets";
+                },
+                // Optional
+                onError: function(result) {
+                    // Redirect to error page or do whatever you want
+                    window.location.href = "/dashboard/tickets";
+                }
+            });
+        };
+    </script>
 @endsection
