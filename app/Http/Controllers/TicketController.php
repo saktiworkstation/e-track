@@ -175,9 +175,9 @@ class TicketController extends Controller
     // ? With midtrans
     public function buyTicket(Request $request, $id){
         // Ambil data tiket dari database
-        $ticket = Ticket::findOrFail($id);
+        $ticket = Ticket::where('id', $id)->firstOrFail();
 
-        // Validasi data input
+        // Validasi data pembelian
         $validatedData = $request->validate([
             'amount' => 'required|numeric',
         ]);
@@ -187,53 +187,36 @@ class TicketController extends Controller
         $amount = $request->amount;
         $total_price = $price * $amount;
 
-        // Set data untuk pembelian tiket
-        $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['ticket_id'] = $id;
-        $validatedData['status'] = 0;
-        $validatedData['total_price'] = $total_price;
-
-        // Generate kode unik
+        // Generate kode unik untuk transaksi
         $uniqueCode = uniqid();
         while (UserTicket::where('code', $uniqueCode)->exists()) {
             $uniqueCode = uniqid();
         }
-        $validatedData['code'] = $uniqueCode;
 
-        // Mulai transaksi validatedDatabase
-        DB::beginTransaction();
+        // Simpan data pembelian ke database
+        $userTicket = new UserTicket();
+        $userTicket->code = $uniqueCode;
+        $userTicket->user_id = auth()->user()->id;
+        $userTicket->ticket_id = $id;
+        $userTicket->status = 0; // Status awal, belum dibayar
+        $userTicket->total_price = $total_price;
+        $userTicket->save();
 
-        try {
-            // Simpan validatedData pembelian tiket ke dalam validatedDatabase
-            $userTicket = UserTicket::create($validatedData);
+        // Konfigurasi Midtrans
+        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION') === 'true' ? true : false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
 
-            // Konfigurasi Midtrans
-            Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-            Config::$isProduction = !env('MIDTRANS_IS_SANDBOX');
-            Config::$is3ds = true;
+        // Buat transaksi ke Midtrans
+        $transaction_details = [
+            'order_id' => $uniqueCode,
+            'gross_amount' => $total_price,
+        ];
 
-            // Buat transaksi pembayaran dengan Midtrans
-            $payload = [
-                'transaction_details' => [
-                    'order_id' => $userTicket->id,
-                    'gross_amount' => $total_price,
-                ],
-            ];
+        $snapToken = Snap::getSnapToken($transaction_details);
 
-            $snapToken = Snap::getSnapToken($payload);
-
-            // Commit transaksi database jika berhasil
-            DB::commit();
-
-            // Redirect pengguna ke halaman pembayaran Midtrans
-            return redirect()->away($snapToken);
-        } catch (\Exception $e) {
-            // Rollback transaksi database jika terjadi kesalahan
-            DB::rollback();
-
-            // Redirect pengguna ke halaman yang sesuai setelah pembayaran gagal
-            // Misalnya, halaman pembelian ulang atau halaman tiket
-            return redirect('/dashboard/tickets')->with('error', 'Failed to purchase ticket. Please try again later.');
-        }
+        // Redirect pengguna ke halaman pembayaran Midtrans dengan snapToken
+        return redirect()->away(Snap::getSnapURL($snapToken));
     }
 }
