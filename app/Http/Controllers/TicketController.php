@@ -163,8 +163,6 @@ class TicketController extends Controller
         $validatedData['status'] = 0;
         $validatedData['total_price'] = $total_price;
 
-
-
         UserTicket::create($validatedData);
 
         return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
