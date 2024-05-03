@@ -56,7 +56,6 @@ Route::get('/dashboard/tickets/purchase/{id}', [TicketController::class, 'buyFor
 // user tickets purcahase proccese
 Route::post('/dashboard/tickets/purchase/{id}', [TicketController::class, 'buyTicket'])->middleware('auth');
 
-
 // * event
 // event management
 Route::get('/dashboard/events', [EventController::class, 'index'])->middleware('auth')->middleware('admin');

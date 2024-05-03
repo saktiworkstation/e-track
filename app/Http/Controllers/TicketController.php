@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Midtrans\Config;
 use Midtrans\Snap;
+use Midtrans\Notification;
 
 class TicketController extends Controller
 {
@@ -142,81 +143,32 @@ class TicketController extends Controller
         ]);
     }
 
-    // ? No midtrans
-    // public function buyTicket(Request $request, $id){
-    //     $ticket = Ticket::where('id', $id)->firstOrFail();
-
-    //     $validatedData = $request->validate([
-    //         'amount' => 'required|numeric',
-    //     ]);
-
-    //     $price = $ticket->price;
-    //     $amount = $request->amount;
-    //     $total_price = $price * $amount;
-
-    //     $uniqueCode = uniqid();
-
-    //     while (UserTicket::where('code', $uniqueCode)->exists()) {
-    //         $uniqueCode = uniqid();
-    //     }
-
-    //     $validatedData['code'] = $uniqueCode;
-
-    //     $validatedData['user_id'] = auth()->user()->id;
-    //     $validatedData['ticket_id'] = $id;
-    //     $validatedData['status'] = 0;
-    //     $validatedData['total_price'] = $total_price;
-
-    //     UserTicket::create($validatedData);
-
-    //     return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
-    // }
-
-    // ? With midtrans
     public function buyTicket(Request $request, $id){
-        // Ambil data tiket dari database
         $ticket = Ticket::where('id', $id)->firstOrFail();
 
-        // Validasi data pembelian
         $validatedData = $request->validate([
             'amount' => 'required|numeric',
         ]);
 
-        // Hitung total harga
         $price = $ticket->price;
         $amount = $request->amount;
         $total_price = $price * $amount;
 
-        // Generate kode unik untuk transaksi
         $uniqueCode = uniqid();
+
         while (UserTicket::where('code', $uniqueCode)->exists()) {
             $uniqueCode = uniqid();
         }
 
-        // Simpan data pembelian ke database
-        $userTicket = new UserTicket();
-        $userTicket->code = $uniqueCode;
-        $userTicket->user_id = auth()->user()->id;
-        $userTicket->ticket_id = $id;
-        $userTicket->status = 0; // Status awal, belum dibayar
-        $userTicket->total_price = $total_price;
-        $userTicket->save();
+        $validatedData['code'] = $uniqueCode;
 
-        // Konfigurasi Midtrans
-        Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        Config::$isProduction = env('MIDTRANS_IS_PRODUCTION') === 'true' ? true : false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['ticket_id'] = $id;
+        $validatedData['status'] = 0;
+        $validatedData['total_price'] = $total_price;
 
-        // Buat transaksi ke Midtrans
-        $transaction_details = [
-            'order_id' => $uniqueCode,
-            'gross_amount' => $total_price,
-        ];
+        UserTicket::create($validatedData);
 
-        $snapToken = Snap::getSnapToken($transaction_details);
-
-        // Redirect pengguna ke halaman pembayaran Midtrans dengan snapToken
-        return redirect()->away(Snap::getSnapURL($snapToken));
+        return redirect('/dashboard/tickets')->with('success', 'Ticket purchase successful!');
     }
 }
