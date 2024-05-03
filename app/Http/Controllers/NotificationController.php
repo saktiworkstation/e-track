@@ -36,7 +36,7 @@ class NotificationController extends Controller
     {
         $validatedData = $request->validate([
             'user_id' => 'required',
-            'link' => 'url',
+            'link' => 'nullable|url',
             'message' => 'required'
         ]);
 
