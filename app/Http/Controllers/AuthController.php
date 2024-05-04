@@ -101,6 +101,6 @@ class AuthController extends Controller
         $validatedData = $request->validate($rules);
 
         User::where('id', $id)->update($validatedData);
-        return redirect('/dashboard')->with('success', 'User Role changed successfully!');
+        return redirect('/dashboard')->with('success', 'User Data changed successfully!');
     }
 }
