@@ -9,8 +9,8 @@
             <p class="lead">Buy tickets anywhere at any time, without having to queue, explore the various features we
                 provide and enjoy the various promos available.</p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a type="button" href="#" class="btn btn-primary btn-lg px-4 me-md-2">Sigin-Up</a>
-                <a type="button" href="#" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+                <a type="button" href="/register" class="btn btn-primary btn-lg px-4 me-md-2">Sigin-Up</a>
+                <a type="button" href="/login" class="btn btn-outline-secondary btn-lg px-4">Login</a>
             </div>
         </div>
     </div>
