@@ -22,6 +22,26 @@
     <div class="table-responsive col-sd-11">
         <div class="container">
             <div class="row">
+                <div class="col-lg-8">
+                    <form method="post" action="/auth/{{ $acount->id }}/edit" class="mb-5"
+                        enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                name="name" required autofocus value="{{ old('name', $acount->name) }}">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary">Edit Events</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <h4>User Data</h4>
                     <table class="table table-striped table-sm">
