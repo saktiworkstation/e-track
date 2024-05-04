@@ -2,6 +2,10 @@
 
 Aplikasi ini dibangun menggunakan Laravel dan database MySQL untuk menyediakan layanan pembelian tiket untuk berbagai wahana.
 
+## Demo
+Anda dapat melihat demo template ini di [sini](https://e-track-demo.000webhostapp.com/).
+
+
 ## Fitur Utama
 
 - **Notifikasi**: Pengguna akan menerima notifikasi tentang pembelian tiket, status pembayaran, dan informasi terkait lainnya.
@@ -16,10 +20,6 @@ Aplikasi ini dibangun menggunakan Laravel dan database MySQL untuk menyediakan l
 4. Jalankan migrasi untuk membuat struktur tabel di database.
 5. Jalankan aplikasi menggunakan perintah `php artisan serve`.
 6. Akses aplikasi melalui browser Anda dan nikmati layanan pembelian tiket kami!
-
-## Kontribusi
-
-Kami menyambut kontribusi dari para pengembang. Silakan kirimkan pull request untuk perbaikan atau fitur baru.
 
 ## Lisensi
 
