@@ -35,6 +35,7 @@ Route::delete('/auth/{id}/delete', [AuthController::class, 'destroy'])->middlewa
 Route::get('/dashboard', function () {
     return view('dashboard.index', [
         'users' => User::orderBy('username', 'asc')->paginate(100),
+        'acount' => User::where('id', auth()->user()->id)->firstOrFail()
     ]);
 })->middleware('auth');
 
