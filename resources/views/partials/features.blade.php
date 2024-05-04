@@ -1,4 +1,4 @@
-<div class="container px-4 py-5" id="icon-grid">
+<div class="container px-4 py-5" id="features">
     <h2 class="pb-2 border-bottom">Features</h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
